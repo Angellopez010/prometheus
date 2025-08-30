@@ -4,33 +4,62 @@
 
 ## Overview
 
-Prometheus is a FastMCP server that provides PDF processing tools for Claude Code. It intelligently splits large PDF documents into manageable chunks while preserving visual content and respecting token limits, making massive documents accessible to language models.
+Prometheus is a professional-grade FastMCP server that provides advanced PDF processing tools for Claude Code. It intelligently splits large PDF documents into manageable chunks while preserving visual content and respecting token limits, making massive documents accessible to language models with enterprise-level reliability.
 
 ## Features
 
 ### Core Tools
 
-- **`prometheus_info`** - Get comprehensive PDF metadata and processing estimates
+- **`prometheus_info`** - Get comprehensive PDF metadata and intelligent processing estimates
 - **`prometheus_split`** - Split PDFs into smaller files preserving all visual content
-- **`prometheus_extract_text`** - Extract text with intelligent token-aware chunking
-- **`prometheus_extract_range`** - Extract specific page ranges as new PDFs
+- **`prometheus_extract_text`** - Extract text with token-aware chunking using tiktoken
+- **`prometheus_extract_range`** - Extract specific page ranges with surgical precision
 
-### Key Capabilities
+### Professional Capabilities
 
-- **Visual Preservation**: Maintains charts, graphs, and formatting when splitting PDFs
-- **Token-Aware Processing**: Chunks text based on actual token counts, not arbitrary limits
-- **Smart Text Cleaning**: Removes artifacts and excessive whitespace for better readability
-- **Flexible Output**: Save to custom directories with customizable naming
-- **Progress Tracking**: Rich console output for development and testing
+- **Production Ready**: Structured logging, configuration management, and robust error handling
+- **Memory Optimized**: Context managers and proper resource cleanup for large files
+- **Security Focused**: File size limits, timeout protection, and input validation
+- **Token Precision**: Uses tiktoken for accurate LLM token counting
+- **Visual Preservation**: Maintains charts, graphs, and formatting integrity
+- **Smart Analytics**: Intelligent complexity assessment and processing recommendations
+- **Environment Configuration**: Flexible configuration via environment variables
 
 ## Modern Python Stack
 
 - **uv** - Lightning-fast package management
 - **ruff** - Ultra-fast linting and formatting
 - **FastMCP** - Simplified MCP server creation
-- **PyMuPDF** - Industrial-strength PDF processing
+- **PyMuPDF 1.26+** - Latest industrial-strength PDF processing
 - **tiktoken** - Accurate token counting for LLMs
+- **structlog** - Professional structured logging
+- **pydantic** - Runtime type validation and settings management
 - **Rich/Typer** - Beautiful CLI interfaces
+
+## Configuration
+
+Prometheus supports flexible configuration via environment variables:
+
+```bash
+# Logging
+PROMETHEUS_LOG_LEVEL=INFO          # DEBUG, INFO, WARNING, ERROR
+PROMETHEUS_LOG_FORMAT=json         # json, text
+
+# Processing Limits  
+PROMETHEUS_MAX_FILE_SIZE_MB=500    # Maximum PDF file size
+PROMETHEUS_MAX_PAGES_PER_CHUNK=200 # Maximum pages per chunk
+PROMETHEUS_MAX_TOKEN_LIMIT=32000   # Maximum tokens per text chunk
+
+# Performance
+PROMETHEUS_MEMORY_OPT=true         # Enable memory optimization
+PROMETHEUS_TIMEOUT=300             # Processing timeout in seconds
+
+# Output
+PROMETHEUS_OUTPUT_DIR=/path/to/out # Default output directory
+PROMETHEUS_CLEAN_TEMP=true         # Clean temporary files
+```
+
+Copy `.env.example` to `.env` and customize as needed.
 
 ## Installation
 
