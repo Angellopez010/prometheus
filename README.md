@@ -34,10 +34,26 @@ Prometheus is a FastMCP server that provides PDF processing tools for Claude Cod
 
 ## Installation
 
-```bash
-cd ~/conductor/prometheus
+### Quick Install (Recommended)
 
-# Install with uv (recommended)
+Install directly from GitHub and add to Claude Code:
+
+```bash
+# Test the installation
+uvx --from git+https://github.com/terry-li-hm/prometheus prometheus --version
+
+# Add to Claude Code MCP servers
+claude mcp add -s user prometheus "uvx --from git+https://github.com/terry-li-hm/prometheus prometheus"
+```
+
+### Development Install
+
+```bash
+# Clone and install locally
+git clone https://github.com/terry-li-hm/prometheus.git
+cd prometheus
+
+# Install with uv (recommended)  
 uv venv
 uv pip install -e .
 
@@ -49,13 +65,15 @@ pip install -e .
 
 ### MCP Server Mode
 
-Configure in your Claude Code MCP settings:
+**Automatic Configuration** (after quick install above):
+The server is automatically configured and ready to use in Claude Code.
 
+**Manual Configuration** (if needed):
 ```json
 {
   "prometheus": {
-    "command": "uv",
-    "args": ["run", "prometheus"],
+    "command": "uvx",
+    "args": ["--from", "git+https://github.com/terry-li-hm/prometheus", "prometheus"],
     "env": {
       "PROMETHEUS_LOG_LEVEL": "INFO"
     }
