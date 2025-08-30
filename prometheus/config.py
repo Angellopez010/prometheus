@@ -88,7 +88,7 @@ class PrometheusConfig(BaseModel):
                 try:
                     path.mkdir(parents=True, exist_ok=True)
                 except OSError as e:
-                    raise ValueError(f"Cannot create output directory {v}: {e}")
+                    raise ValueError(f"Cannot create output directory {v}: {e}") from e
         return v
 
 

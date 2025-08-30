@@ -3,6 +3,7 @@ name = "prometheus"
 version = "0.2.0"
 description = "PDF Liberation MCP Server - Break large PDFs into digestible chunks"
 readme = "README.md"
+license = "AGPL-3.0-or-later"
 requires-python = ">=3.12"
 authors = [
     {name = "Terry", email = "terry@example.com"}
@@ -10,7 +11,7 @@ authors = [
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
     "Programming Language :: Python :: 3.12",
     "Topic :: Text Processing :: Filters",
     "Topic :: Office/Business",

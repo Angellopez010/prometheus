@@ -78,13 +78,13 @@ class ExtractionOptions(BaseModel):
 @app.tool()
 async def prometheus_info(pdf_path: str) -> dict:
     """Get comprehensive metadata and analysis of a PDF file.
-    
+
     Analyzes PDF structure, estimates processing complexity, and provides
     intelligent recommendations for optimal chunking strategies.
-    
+
     Args:
         pdf_path: Path to the PDF file (supports absolute and relative paths)
-        
+
     Returns:
         Dictionary containing detailed PDF metadata, content analysis, and processing estimates
     """
@@ -116,23 +116,23 @@ async def prometheus_split(
     prefix: str = "chunk"
 ) -> dict:
     """Split a PDF into smaller files while preserving all visual content.
-    
+
     Like Prometheus stealing fire from the gods, this liberates knowledge
     trapped in massive PDFs by breaking them into digestible portions that
     maintain charts, graphs, and formatting integrity.
-    
+
     Args:
         pdf_path: Path to the source PDF file
         pages_per_chunk: Number of pages per chunk (1-{config.max_pages_per_chunk})
         output_dir: Output directory (defaults to same dir as source with "_chunks" suffix)
         prefix: Filename prefix for generated chunks
-        
+
     Returns:
         Dictionary with splitting results, file paths, and processing statistics
     """
     # Validate options with enhanced error messages
     try:
-        options = SplitOptions(
+        SplitOptions(
             pages_per_chunk=pages_per_chunk,
             output_dir=output_dir,
             prefix=prefix
@@ -168,23 +168,23 @@ async def prometheus_extract_text(
     clean_text: bool = True
 ) -> dict:
     """Extract text from PDF in intelligent, token-aware chunks optimized for LLMs.
-    
+
     Intelligently extracts and chunks text while respecting token limits and
     preserving document structure. Uses tiktoken for accurate token counting
     and applies advanced text cleaning for optimal AI consumption.
-    
+
     Args:
         pdf_path: Path to the PDF file
         max_tokens_per_chunk: Maximum tokens per text chunk (100-{config.max_token_limit})
         include_page_numbers: Include page markers for reference tracking
         clean_text: Apply advanced text cleaning for better readability
-        
+
     Returns:
         Dictionary with extracted text chunks, token statistics, and processing metadata
     """
     # Validate options with detailed error messages
     try:
-        options = ExtractionOptions(
+        ExtractionOptions(
             max_tokens_per_chunk=max_tokens_per_chunk,
             include_page_numbers=include_page_numbers,
             clean_text=clean_text
@@ -222,17 +222,17 @@ async def prometheus_extract_range(
     output_path: str | None = None
 ) -> dict:
     """Extract a specific page range as a new PDF file with surgical precision.
-    
+
     Performs targeted extraction of specific pages while maintaining all
     visual elements, formatting, and embedded content. Perfect for isolating
     specific sections, chapters, or appendices.
-    
+
     Args:
         pdf_path: Path to the source PDF
         start_page: Starting page number (1-indexed)
         end_page: Ending page number (1-indexed, inclusive)
         output_path: Output file path (auto-generated if not provided)
-        
+
     Returns:
         Dictionary with extraction results and output file information
     """

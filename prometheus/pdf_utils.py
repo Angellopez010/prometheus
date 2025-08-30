@@ -48,11 +48,11 @@ def safe_pdf_context(pdf_path: str) -> Iterator[fitz.Document]:
             doc = fitz.open(pdf_path)
         except Exception as e:
             if "password" in str(e).lower():
-                raise PDFError("PDF is password protected")
+                raise PDFError("PDF is password protected") from e
             elif "corrupt" in str(e).lower():
-                raise PDFError("PDF file appears to be corrupted")
+                raise PDFError("PDF file appears to be corrupted") from e
             else:
-                raise PDFError(f"Failed to open PDF: {e!s}")
+                raise PDFError(f"Failed to open PDF: {e!s}") from e
 
         # Validate PDF has pages
         if len(doc) == 0:
@@ -98,13 +98,13 @@ def clean_extracted_text(text: str) -> str:
     return text.strip()
 
 
-async def process_with_timeout(coro, timeout_seconds: int = None):
+async def process_with_timeout(coro, timeout_seconds: int | None = None):
     """Execute coroutine with configurable timeout."""
     timeout = timeout_seconds or config.chunk_processing_timeout
     try:
         return await asyncio.wait_for(coro, timeout=timeout)
-    except TimeoutError:
-        raise PDFError(f"Processing timed out after {timeout} seconds")
+    except TimeoutError as e:
+        raise PDFError(f"Processing timed out after {timeout} seconds") from e
 
 
 async def get_pdf_info(pdf_path: str) -> dict:
@@ -149,7 +149,7 @@ async def get_pdf_info(pdf_path: str) -> dict:
                 try:
                     page_text = doc[i].get_text()
                     sample_text_length += len(page_text)
-                except:
+                except Exception:
                     continue
 
             avg_chars_per_page = sample_text_length / sample_pages if sample_pages > 0 else 0

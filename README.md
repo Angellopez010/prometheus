@@ -275,4 +275,6 @@ python scripts/test_cli.py split quarterly_report.pdf --pages 15 --prefix report
 
 ## License
 
-MIT License - See LICENSE file for details.
+GNU Affero General Public License v3.0 - See LICENSE file for details.
+
+This project is licensed under the AGPL-3.0 to maintain compatibility with PyMuPDF's licensing requirements. The AGPL ensures that improvements to this PDF processing server remain available to the community.
